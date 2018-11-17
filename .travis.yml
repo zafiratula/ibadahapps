@@ -1,0 +1,34 @@
+#role user
+sudo: required
+#OS apa yang digunaka, precies, trusty, xenial
+dist: trusty
+#bahasa yang digunakan
+language: php
+#versi bahasa yang digunakan
+php:
+  -7.1
+#branch apa saja yang mau digunakan
+branches: 
+  only: 
+    - master
+    - develop
+
+#sebelum melakukan install
+before_install:
+  - wget https://phar.phpunit.de/phpunit-6.5.phar
+  - chmod +x phpunit-6.5.phar 
+
+
+#proses install
+install:
+  - sudo mv phpunit-6.5.phar phpunit
+
+#before_script (sebelum script dijalankan)
+before_script:
+  - ./phpunit --version
+
+#a script (main execution)
+script:
+
+#setelah main execution selesai
+after_success:
